@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  proxy:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./share:/share
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./proxy/error.log:/var/log/nginx/error.log
+      - ./proxy/html:/usr/share/nginx/html
+
+  web:
+    image: nginx
+    volumes:
+      - ./share:/share
+      - ./web/nginx.conf:/etc/nginx/nginx.conf
+      - ./web/error.log:/var/log/nginx/error.log
+      - ./web/html:/usr/share/nginx/html
